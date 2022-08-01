@@ -1,4 +1,3 @@
-//Startup da aplicação
 package org.generation.blogPessoal;
 
 import org.springframework.boot.SpringApplication;
