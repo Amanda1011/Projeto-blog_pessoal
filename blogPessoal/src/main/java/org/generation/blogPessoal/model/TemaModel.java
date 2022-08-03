@@ -51,6 +51,4 @@ public class TemaModel {
 	public void setPostagem(List<PostagemModel> postagem) {
 		this.postagem = postagem;
 	}
-	
-	
 }

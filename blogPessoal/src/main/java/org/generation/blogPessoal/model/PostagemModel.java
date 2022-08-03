@@ -25,7 +25,7 @@ public class PostagemModel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)// Indica o esquema auto increment para a chave primaria
 	private Long id;
 	
-	@NotBlank(message = "O atributo título é Obrigatório e não pode utilizar espaços em branco!\r\n")
+	@NotBlank(message = "O atributo título é Obrigatório e não pode utilizar espaços em branco!")
 	@Size(min = 5, max = 100, message = "O atributo título deve conter no mínimo 05 e no máximo 100 caracteres")
 	private String titulo;
 	
