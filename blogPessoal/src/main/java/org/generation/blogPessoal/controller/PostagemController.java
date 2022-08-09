@@ -9,7 +9,6 @@ import org.generation.blogPessoal.repository.PostagemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,19 +29,19 @@ public class PostagemController {
 	private PostagemRepository postagemRepository;
 	
 	@GetMapping 
-	public ResponseEntity<List<PostagemModel>> GetAll(){
+	public ResponseEntity<List<PostagemModel>> getAll(){
 		return ResponseEntity.ok(postagemRepository.findAll());
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<PostagemModel> GetById(@PathVariable Long id){ //PathVariable reconhece os parâmetros da URL
+	public ResponseEntity<PostagemModel> getById(@PathVariable Long id){ //PathVariable reconhece os parâmetros da URL
 		return postagemRepository.findById(id)
 			.map(resp -> ResponseEntity.ok(resp)) //Retorna resposta
 			.orElse(ResponseEntity.notFound().build()); //Retorna um not found caso não haja resposta do BD
 	}
 	
 	@GetMapping("/titulo/{titulo}")
-	public ResponseEntity<List<PostagemModel>> GetByTitulo(@PathVariable String titulo){
+	public ResponseEntity<List<PostagemModel>> getByTitulo(@PathVariable String titulo){
 		return ResponseEntity.ok(postagemRepository.findAllByTituloContainingIgnoreCase(titulo));
 	}
 	
