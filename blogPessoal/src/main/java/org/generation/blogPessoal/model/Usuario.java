@@ -89,4 +89,5 @@ public class Usuario {
 	public void setPostagem(List<PostagemModel> postagem) {
 		this.postagem = postagem;
 	}
+
 }

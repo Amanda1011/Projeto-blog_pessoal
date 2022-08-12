@@ -13,14 +13,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService{
+public class UserDetailsServiceImpl implements UserDetailsService {
 	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
 	@Override 
 	//recebe o usuário através da tela de login do sistema
-	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException{
+	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 		
 		Optional<Usuario> usuario =  usuarioRepository.findByUsuario(userName);
 		
@@ -29,5 +29,4 @@ public class UserDetailsServiceImpl implements UserDetailsService{
 		else
 			throw new ResponseStatusException(HttpStatus.FORBIDDEN); //retornar acesso 	
 	}
-
 }
