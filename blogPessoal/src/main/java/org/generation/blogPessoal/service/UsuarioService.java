@@ -1,3 +1,4 @@
+
 package org.generation.blogPessoal.service;
 
 import java.nio.charset.Charset;
@@ -74,7 +75,6 @@ public class UsuarioService {
 		
 		return encoder.encode(senha);
 	}
-	
 	private boolean compararSenhas(String senhaDigitada, String senhaBanco) {
 		
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -84,7 +84,7 @@ public class UsuarioService {
 	
 	private String gerarBasicToken(String usuario, String senha) {
 		
-		String token = usuario +":" + senha;
+		String token = usuario + ":" + senha;
 		byte[] tokenBase64 = Base64.encodeBase64(token.getBytes(Charset.forName("US-ASCII")));
 		return "Basic" + new String(tokenBase64);
 	}

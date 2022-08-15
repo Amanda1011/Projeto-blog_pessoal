@@ -2,6 +2,8 @@ package org.generation.blogPessoal.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.generation.blogPessoal.model.TemaModel;
 import org.generation.blogPessoal.repository.TemaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,36 +25,40 @@ import org.springframework.web.bind.annotation.RestController;
 public class TemaController {
 	
 	@Autowired
-	private TemaRepository repository;
+	private TemaRepository temaRepository;
 	
 	@GetMapping
 	public ResponseEntity<List<TemaModel>> GetAll(){
-		return ResponseEntity.ok(repository.findAll());
+		return ResponseEntity.ok(temaRepository.findAll());
 	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<TemaModel> GetById(@PathVariable Long id){
-		return repository.findById(id).map(resp -> ResponseEntity.ok(resp))
+		return temaRepository.findById(id).map(resp -> ResponseEntity.ok(resp))
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
 	@GetMapping("/nome{nome}")
 	public ResponseEntity<List<TemaModel>> GetByName(@PathVariable String nome){
-		return ResponseEntity.ok(repository.findAllByDescricaoContainingIgnoreCase(nome));
+		return ResponseEntity.ok(temaRepository.findAllByDescricaoContainingIgnoreCase(nome));
 	}
 	
 	@PostMapping
-	public ResponseEntity<TemaModel> post (@RequestBody TemaModel tema){
-		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(tema));
+	public ResponseEntity<TemaModel> post (@Valid @RequestBody TemaModel tema){
+		return ResponseEntity.status(HttpStatus.CREATED).body(temaRepository.save(tema));
 	}
 	
 	@PutMapping
-	public ResponseEntity<TemaModel> put (@RequestBody TemaModel tema){
-		return ResponseEntity.ok(repository.save(tema));
+	public ResponseEntity<TemaModel> put (@Valid @RequestBody TemaModel tema){
+		return temaRepository.findById(tema.getId())
+				.map(resposta -> {
+					return ResponseEntity.ok().body(temaRepository.save(tema));
+				})
+				.orElse(ResponseEntity.notFound().build());
 	}
 	
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		repository.deleteById(id);
+		temaRepository.deleteById(id);
 	}
 }
