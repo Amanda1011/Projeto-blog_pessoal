@@ -34,7 +34,7 @@ public class PostagemController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<PostagemModel> getById(@PathVariable Long id){ //PathVariable reconhece os parâmetros da URL
+	public ResponseEntity<PostagemModel> getById(@PathVariable Long id){ 
 		return postagemRepository.findById(id)
 			.map(resp -> ResponseEntity.ok(resp)) //Retorna resposta
 			.orElse(ResponseEntity.notFound().build()); //Retorna um not found caso não haja resposta do BD
