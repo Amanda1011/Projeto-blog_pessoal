@@ -27,11 +27,11 @@ public class SwaggerConfig {
 					.url("https://github.com/Amanda1011"))
 				.contact(new Contact()
 					.name("Amanda Santos")
-					.url("https://localhost:8080")
+					.url("https://blogpessoalmands.herokuapp.com/swagger-ui/index.html")
 					.email("amandapereira.dev@gmail.com")))
 				.externalDocs(new ExternalDocumentation()
 					.description("Github")
-					.url("https://github.com/Amanda1011/Projeto-blog_pessoal/tree/main/blogPessoal"));
+					.url("https://github.com/Amanda1011/Projeto-blog_pessoal"));
 	}
 
 	@Bean
